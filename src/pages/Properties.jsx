@@ -1,80 +1,54 @@
-export default function Properties() {
-  const properties = [
-    {
-      id: 1,
-      name: "قطعة أرض سكنية - الحي الراقي",
-      type: "أرض",
-      area: 750,
-      unit: "م²",
-      price: 850000,
-      currency: "ر.س",
-      status: "متاحة",
-      coordinates: "24.7136° N, 46.6753° E",
-      owner: "شركة التطوير العقاري",
-      description: "قطعة أرض سكنية مميزة في موقع استراتيجي، قريبة من جميع الخدمات والمرافق العامة.",
-      features: ["شارع 20م", "خدمات متكاملة", "قريبة من المدارس"],
-      color: "#2c3e50",
-      icon: "🏞️",
-      lastUpdated: "2026-09-08"
-    },
-    {
-      id: 2,
-      name: "مبنى تجاري - شارع الملك فهد",
-      type: "مبنى تجاري",
-      area: 1200,
-      unit: "م²",
-      price: 2500000,
-      currency: "ر.س",
-      status: "مؤجّر",
-      coordinates: "24.6880° N, 46.6854° E",
-      owner: "صندوق الاستثمارات العقارية",
-      description: "مبنى تجاري عصري بموقع حيوي، إشغال كامل بعقود طويلة الأجل مع مستأجرين موثوقين.",
-      features: ["5 طوابق", "مصعدين", "مواقف سيارات"],
-      color: "#34495e",
-      icon: "🏢",
-      lastUpdated: "2026-09-05"
-    },
-    {
-      id: 3,
-      name: "مستودع لوجستي - المنطقة الصناعية",
-      type: "مستودع",
-      area: 5000,
-      unit: "م²",
-      price: 1200000,
-      currency: "ر.س",
-      status: "متاحة",
-      coordinates: "24.5231° N, 46.7202° E",
-      owner: "الشركة اللوجستية المتحدة",
-      description: "مستودع ضخم بارتفاع 12 متر، مجهز بأحدث أنظمة الإطفاء والتهوية، وصول مباشر للشاحنات.",
-      features: ["رصيف تحميل", "نظام إطفاء", "تهوية صناعية"],
-      color: "#1a252f",
-      icon: "🏭",
-      lastUpdated: "2026-09-01"
-    }
-  ];
+import React from 'react';
 
+const Properties = () => {
   const stats = [
-    { label: "إجمالي العقارات", value: "3,247", trend: "+12.5%", color: "#2c3e50" },
-    { label: "قيمة المحفظة", value: "1.2 مليار", trend: "+8.3%", color: "#34495e" },
-    { label: "معدل الإشغال", value: "94.2%", trend: "+2.1%", color: "#1a252f" },
-    { label: "صفقات هذا الشهر", value: "47", trend: "+18.7%", color: "#2c3e50" }
+    { label: "إجمالي الأراضي", value: "94.2%", trend: "+2.1%", color: "#1a252f" },
+    { label: "الأراضي الموثقة", value: "47", trend: "+18.7%", color: "#2c3e50" }
   ];
 
   const layers = [
-    { name: "الطرق", visible: true, type: "خطوط" },
-    { name: "المناطق السكنية", visible: true, type: "مساحات" },
-    { name: "شبكة المياه", visible: false, type: "خطوط" },
-    { name: "الأراضي الزراعية", visible: true, type: "مساحات" },
-    { name: "نقاط الاهتمام", visible: false, type: "نقاط" }
+    { name: "قطع الأراضي", visible: true, type: "خطوط" },
+    { name: "المباني والمنشآت", visible: true, type: "رسم مساحي" },
+    { name: "الشبكة المساحية", visible: false, type: "خطوط" },
+    { name: "أحياء وضواحي", visible: true, type: "رسم مساحي" },
+    { name: "المناطق المخططة", visible: false, type: "مناطق" }
   ];
 
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-6 lg:p-8" style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4      </div>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-800">إدارة العقارات والأراضي</h1>
+          <p className="text-slate-500 mt-1">استعراض وتوثيق كافة العقارات والطبقات المساحية</p>
+        </div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        {stats.map((stat, idx) => (
+          <div key={idx} className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
+            <span className="text-slate-500 text-sm">{stat.label}</span>
+            <div className="text-2xl font-bold text-slate-800 mt-2">{stat.value}</div>
+            <span className="text-emerald-600 text-xs font-semibold mt-1 inline-block">{stat.trend}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Layers List */}
+      <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+        <h2 className="text-lg font-bold text-slate-800 mb-4">الطبقات المساحية</h2>
+        <div className="space-y-3">
+          {layers.map((layer, idx) => (
+            <div key={idx} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+              <span className="font-medium text-slate-700">{layer.name}</span>
+              <span className="text-xs px-2 py-1 bg-slate-200 rounded text-slate-600">{layer.type}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Properties;
