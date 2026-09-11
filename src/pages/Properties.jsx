@@ -71,4 +71,10 @@ export default function Properties() {
   return (
     <div dir="rtl" className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-6 lg:p-8" style={{ fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8 gap-4      </div>
+    </div>
+  </div>
+);
+};
+
+export default Properties;
